@@ -103,3 +103,4 @@ for ii in range(len(results)):
 
 average_weapon = weapons / len(results)
 print('Average amount of weapons per each character:', average_weapon)
+
