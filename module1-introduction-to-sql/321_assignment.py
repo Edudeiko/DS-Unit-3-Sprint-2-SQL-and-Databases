@@ -79,8 +79,8 @@ GROUP BY character_id;
 
 results = curs.execute(query).fetchall()
 items = 0
-for i in range(len(results)):
-    items += results[i][0]
+for ii in range(len(results)):
+    items += results[ii][0]
 average = items / len(results)
 print('Average amount of items per each character:', average)
 
