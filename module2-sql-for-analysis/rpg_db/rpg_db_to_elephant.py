@@ -25,12 +25,17 @@ class StorageService():
         self.pg_connection = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST)
         self.pg_cursor = self.pg_connection.cursor()
 
+# 1). Get table
     def get_characters(self):
         return self.sqlite_connection.execute("SELECT * FROM charactercreator_character;").fetchall()
 
+# 2). Create table
     def create_characters_table(self):
+# DROP TABLE IF EXISTS -- allows this to be run idempotently,
+# avoids psycopg2.errors.UniqueViolation: duplicate key value violates 
+# unique constraint "characters_pkey" DETAIL:  Key (character_id)=(1) already exists.
         create_query = """
-        DROP TABLE IF EXISTS characters; -- allows this to be run idempotently, avoids psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "characters_pkey" DETAIL:  Key (character_id)=(1) already exists.
+        DROP TABLE IF EXISTS characters;
         CREATE TABLE IF NOT EXISTS characters (
             character_id SERIAL PRIMARY KEY,
             name VARCHAR(30),
@@ -47,28 +52,71 @@ class StorageService():
         self.pg_cursor.execute(create_query)
         self.pg_connection.commit()
 
+# 3). Insert table
     def insert_characters(self, characters):
         insertion_query = "INSERT INTO characters (character_id, name, level, exp, hp, strength, intelligence, dexterity, wisdom) VALUES %s"
         list_of_tuples = characters
         execute_values(self.pg_cursor, insertion_query, list_of_tuples)
         self.pg_connection.commit()
 
-if __name__ == "__main__":
+# 1). Get table
+    def get_armory_items(self):
+        return self.sqlite_connection.execute("SELECT * FROM armory_item;").fetchall()
 
+# 2). Create table
+    def create_armory_items_table(self):
+# DROP TABLE IF EXISTS everytime while creating table
+        create_query = """
+        DROP TABLE IF EXISTS armory_item;
+        CREATE TABLE IF NOT EXISTS armory_item(
+            item_id SERIAL PRIMARY KEY,
+            name VARCHAR(30),
+            value INT,
+            weight INT
+        );
+        """
+
+        print(create_query)
+        self.pg_cursor.execute(create_query)
+        self.pg_connection.commit()
+
+# 3). Insert table
+    def insert_armory_items(self, armory_items):
+        insertion_query = "INSERT INTO armory_item (item_id, name, value, weight) VALUES %s"
+        list_of_tuples = armory_items
+        execute_values(self.pg_cursor, insertion_query, list_of_tuples)
+        self.pg_connection.commit()
+
+    
+if __name__ == "__main__":
+    
     service = StorageService()
 
 #     #
 #     # EXTRACT AND TRANSFORM
 #     #
 
+# Characters
     characters = service.get_characters()
     print(type(characters), len(characters))
     print(characters[0])
+
+# Armory Items
+    armory_items = service.get_armory_items()
+    print(type(armory_items), len(armory_items))
+    print(armory_items[2])
 
 #     #
 #     # LOAD
 #     #
 
+# Characters
     service.create_characters_table()
-
     service.insert_characters(characters)
+
+# Armory Items
+
+    service.create_armory_items_table()
+    service.insert_armory_items(armory_items)
+
+# elephantsql 2 table queries created
