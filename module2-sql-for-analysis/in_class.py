@@ -8,10 +8,10 @@ DB_HOST = os.getenv("DB_HOST", default='OOPS')
 
 
 ### Connect to ElephantSQL-hosted PostgreSQL
-conn = psycopg2.connect(dbname='hdhbjtze',
-                        user='hdhbjtze',
-                        password='EqrtQgw_dfugoOsxD3YG1ANSeC-WTsbW',
-                        host='rajje.db.elephantsql.com')
+conn = psycopg2.connect(dbname='h------e',
+                        user='h------e',
+                        password='E---------------------------W',
+                        host='r-------------------.com')
 ### A "cursor", a structure to iterate over db records to perform queries
 cur = conn.cursor()
 ### An example query
