@@ -1,0 +1,68 @@
+# 1). How many passengers survived, and how many died?
+SELECT survived
+,COUNT (survived)
+FROM "public"."summary"
+GROUP BY survived
+
+# 2). How many passengers were in each class?
+SELECT Pclass
+,COUNT (Pclass)
+FROM "public"."summary"
+GROUP BY Pclass
+
+# 3). How many passengers survived/died within each class?
+SELECT Pclass, survived
+,COUNT (survived)
+FROM "public"."summary"
+GROUP BY Pclass, survived
+
+# 4). What was the average age of survivors vs nonsurvivors?
+SELECT survived, AVG(age)
+,COUNT (distinct age)
+FROM "public"."summary"
+GROUP BY survived
+
+# 5). What was the average age of each passenger class?
+SELECT Pclass, AVG(age)
+,COUNT (distinct age)
+FROM "public"."summary"
+GROUP BY Pclass
+
+# 6). What was the average fare by passenger class? By survival?
+SELECT 
+AVG(fare::money::numeric::float8) 
+,pclass
+,survived
+,COUNT(fare)
+FROM "public"."summary"
+GROUP BY pclass, survived
+
+# 7). How many siblings/spouses aboard on average,
+# by passenger class? By survival?
+SELECT 
+AVG(siblingsspousesaboard) 
+,pclass
+,survived
+,COUNT(siblingsspousesaboard)
+FROM "public"."summary"
+GROUP BY pclass, survived
+
+# 8). How many parents/children aboard on average,
+# by passenger class? By survival?
+SELECT 
+ROUND(AVG(parentschildrenaboard)::numeric,2) as avg_parent_children
+,pclass
+,survived
+,COUNT (parentschildrenaboard) as total_parent_children
+FROM "public"."summary"
+GROUP BY pclass, survived
+
+# 9).Do any passengers have the same name?
+SELECT
+    name, COUNT(*)
+FROM
+    "public"."summary"
+GROUP BY
+    name
+HAVING 
+    COUNT(*) > 1
