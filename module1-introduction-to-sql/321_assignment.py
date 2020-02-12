@@ -39,7 +39,6 @@ print('Items are weapons:', results[0]['COUNT(item_ptr_id)'])
 print('Items are NOT weapons:', total_items-results[0]['COUNT(item_ptr_id)'])
 
 # 5). How many Items does each character have? (Return first 20 rows)
-
 items_per_character = """
 SELECT
 character_id,
@@ -103,4 +102,3 @@ for ii in range(len(results)):
 
 average_weapon = weapons / len(results)
 print('Average amount of weapons per each character:', average_weapon)
-
