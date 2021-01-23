@@ -23,4 +23,3 @@ cur.fetchone()
 # conda activate db-env
 # pip install psycopg2 python-dotenv pandas
 # pip install python-dotenv
-

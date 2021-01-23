@@ -12,8 +12,8 @@ print("URI:", connection_uri)
 client = pymongo.MongoClient(connection_uri)
 print("----------------")
 print("CLIENT:", type(client), client)
-print("----------------")
-print("COLLECTIONS:")
-db = client.test
-collection = db.pokemon # Here is the name for your DB
-print(db.list_collection_names())
+# print("----------------")
+# print("COLLECTIONS:")
+# db = client.test
+# collection = db.pokemon  # Here is the name for your DB
+# print(db.list_collection_names())

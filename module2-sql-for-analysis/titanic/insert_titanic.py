@@ -58,7 +58,7 @@ class StorageService():
 
 
 if __name__ == "__main__":
-    
+
     service = StorageService()
 
     #

@@ -24,14 +24,14 @@ for ii in range(len(results)):
 # 2). What is the average age of an employee at the time of their hiring? (Hint: a
 # lot of arithmetic works with dates.)
 query = """
-SELECT 
-AVG(HireDate) - AVG(BirthDate) as avg_age  
-FROM Employee 
+SELECT
+AVG(HireDate) - AVG(BirthDate) as avg_age
+FROM Employee
 WHERE BirthDate IS NOT NULL
 """
 curs.execute(query)
 results = curs.fetchall()
-print(round(results[0][0],0), "is the average age of an employee at the time of hiring")
+print(round(results[0][0], 0), "is the average age of an employee at the time of hiring")
 
 # PART 3
 
@@ -50,7 +50,7 @@ for ii in range(len(results)):
 
 # 2). What is the largest category (by number of unique products in it)
 query = """
-SELECT CategoryName, 
+SELECT CategoryName,
 COUNT(DISTINCT CategoryName)
 FROM Category
 """
