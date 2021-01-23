@@ -53,7 +53,7 @@ connection.commit()
 # 3). Count how many rows you have - it should be 3!
 curs.execute(f"SELECT COUNT() FROM {table_name};")
 results = curs.fetchall()
-print(results [0][0], "ROWS")
+print(results[0][0], "ROWS")
 
 # 4). How many rows are there where both `x` and `y` are at least 5?
 create_query = """
@@ -65,9 +65,9 @@ AND y >=5
 """
 curs.execute(create_query)
 results = curs.fetchall()
-print(results [0][0], "ROWS")
+print(results[0][0], "ROWS")
 
-# 5). How many unique values of `y` are there 
+# 5). How many unique values of `y` are there
 # (hint - `COUNT()` can accept a keyword `DISTINCT`)?
 
 create_query = """

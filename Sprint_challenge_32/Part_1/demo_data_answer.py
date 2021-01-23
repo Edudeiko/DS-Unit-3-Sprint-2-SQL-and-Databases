@@ -8,6 +8,8 @@ DATA = [
 ]
 # 2 helper functions:
 # 1).
+
+
 def make_db():
     """Make and populate the demo database."""
     curs = CONN.cursor()
@@ -17,6 +19,7 @@ def make_db():
     curs.close()
     CONN.commit()
 
+
 #  2).
 def run_queries():
     """Run and print output from queries for sprint challenge questions."""
@@ -24,6 +27,7 @@ def run_queries():
     print(curs.execute('SELECT COUNT(*) FROM demo;').fetchall())
     print(curs.execute('SELECT COUNT(*) FROM demo WHERE x >=5 AND y >=5;').fetchall())
     print(curs.execute('SELECT COUNT(DISTINCT y) FROM demo;').fetchall())
+
 
 if __name__ == "__main__":
     make_db()

@@ -2,10 +2,10 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 
-#define URLs
+# define URLs
 url = 'https://raw.githubusercontent.com/dunkelweizen/DS-Unit-3-Sprint-2-SQL-and-Databases/master/module2-sql-for-analysis/titanic.csv'
-#define dataframe
-df = pd.DataFrame(columns = ['survived', 'pclass', 'name', 'age', 'siblings', 'parents', 'fare'])
+# define dataframe
+df = pd.DataFrame(columns=['survived', 'pclass', 'name', 'age', 'siblings', 'parents', 'fare'])
 
 response = requests.get(url)
 soup = BeautifulSoup(response.content, 'html.parser')
