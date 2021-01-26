@@ -2,6 +2,7 @@ import sqlite3
 
 CONN = sqlite3.connect('northwind_small.sqlite3')
 
+
 def run_queries():
     """Run and print out from queries for sprint challenge questions."""
     # No joins
@@ -26,8 +27,8 @@ def run_queries():
                item_suppliers, largest_category, employee)
     curs = CONN.cursor()
     for query in queries:
-        print(curs.execute(query).fetchall()) 
+        print(curs.execute(query).fetchall())
+
 
 if __name__ == "__main__":
     run_queries()
-  

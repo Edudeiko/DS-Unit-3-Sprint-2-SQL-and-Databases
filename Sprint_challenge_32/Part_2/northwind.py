@@ -5,13 +5,14 @@ connection = sqlite3.connect("northwind_small.sqlite3")
 curs = connection.cursor()
 
 # In particular note that the *primary* key is `Id`, and not `CustomerId`. On
-# other tables (where it is a *foreign* key) it will be `CustomerId`. Also note -
-# the `Order` table conflicts with the `ORDER` keyword! We'll just avoid that
-# particular table, but it's a good lesson in the danger of keyword conflicts.
+# other tables (where it is a *foreign* key) it will be `CustomerId`. Also
+# note - the `Order` table conflicts with the `ORDER` keyword! We'll just
+# avoid that particular table, but it's a good lesson in the danger of keyword
+# conflicts.
 
 # 1). What are the ten most expensive items (per unit price) in the database?
 query = """
-SELECT * 
+SELECT *
 FROM Product
 ORDER BY UnitPrice DESC
 LIMIT 10;

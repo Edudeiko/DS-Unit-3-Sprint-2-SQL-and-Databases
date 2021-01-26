@@ -14,7 +14,7 @@ print("total Characters:", results[0]['COUNT(*)'])
 
 # 2). How many of each specific subclass?
 each_subclass = ['charactercreator_cleric', 'charactercreator_fighter',
-'charactercreator_mage', 'charactercreator_thief']
+                 'charactercreator_mage', 'charactercreator_thief']
 for character_class in each_subclass:
     subclass = f'SELECT COUNT(character_ptr_id) FROM {character_class}'
     results = curs.execute(subclass).fetchall()
@@ -58,8 +58,8 @@ weapon_per_character = """
 SELECT
 character_id,
 COUNT(item_id)
-FROM charactercreator_character_inventory 
-JOIN armory_weapon 
+FROM charactercreator_character_inventory
+JOIN armory_weapon
 ON charactercreator_character_inventory.item_id = armory_weapon.item_ptr_id
 GROUP BY character_id
 LIMIT 20;
