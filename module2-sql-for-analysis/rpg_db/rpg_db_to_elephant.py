@@ -18,6 +18,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD", default="OOPS")
 # DB_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "data", "rpg_db.sqlite3")
 DB_FILEPATH = "rpg_db.sqlite3"
 
+
 class StorageService():
     def __init__(self):
         self.sqlite_connection = sqlite3.connect(DB_FILEPATH)
@@ -31,9 +32,9 @@ class StorageService():
 
 # 2). Create table
     def create_characters_table(self):
-# DROP TABLE IF EXISTS -- allows this to be run idempotently,
-# avoids psycopg2.errors.UniqueViolation: duplicate key value violates 
-# unique constraint "characters_pkey" DETAIL:  Key (character_id)=(1) already exists.
+        # DROP TABLE IF EXISTS -- allows this to be run idempotently,
+        # avoids psycopg2.errors.UniqueViolation: duplicate key value violates
+        # unique constraint "characters_pkey" DETAIL:  Key (character_id)=(1) already exists.
         create_query = """
         DROP TABLE IF EXISTS characters;
         CREATE TABLE IF NOT EXISTS characters (
@@ -65,7 +66,7 @@ class StorageService():
 
 # 2). Create table
     def create_armory_items_table(self):
-# DROP TABLE IF EXISTS everytime while creating table
+        # DROP TABLE IF EXISTS everytime while creating table
         create_query = """
         DROP TABLE IF EXISTS armory_item;
         CREATE TABLE IF NOT EXISTS armory_item(
@@ -87,9 +88,9 @@ class StorageService():
         execute_values(self.pg_cursor, insertion_query, list_of_tuples)
         self.pg_connection.commit()
 
-    
+
 if __name__ == "__main__":
-    
+
     service = StorageService()
 
 #     #
