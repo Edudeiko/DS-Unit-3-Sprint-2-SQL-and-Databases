@@ -15,6 +15,6 @@ lines.pop(0)
 df = pd.DataFrame()
 for line in lines:
     survived, pclass, name, sex, age, siblings, parents, fare = line.split(',')
-    df = df.append(pd.DataFrame([[survived, pclass, name, sex, age, siblings, parents, fare]], columns=['survived', 'pclass', 'name', 'sex', 'age', 'siblings', 'parents', 'fare']),ignore_index=True)
+    df = df.append(pd.DataFrame([[survived, pclass, name, sex, age, siblings, parents, fare]], columns=['survived', 'pclass', 'name', 'sex', 'age', 'siblings', 'parents', 'fare']), ignore_index=True)
 
 df.to_csv('titanic_from_raw.csv')

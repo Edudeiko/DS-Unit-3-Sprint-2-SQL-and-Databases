@@ -49,7 +49,7 @@ class StorageService():
         self.pg_cursor.execute(create_query)
         self.pg_connection.commit()
 
-# 3). Insert table
+    # 3). Insert table
     def insert_summary_table(self, summary):
         insertion_query = "INSERT INTO summary (id, Survived, Pclass, Name, Sex, Age, SiblingsSpousesAboard, ParentsChildrenAboard, Fare) VALUES %s"
         list_of_tuples = summary
