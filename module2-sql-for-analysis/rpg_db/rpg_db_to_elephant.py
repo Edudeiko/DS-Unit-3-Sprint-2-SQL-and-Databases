@@ -81,7 +81,7 @@ class StorageService():
         self.pg_cursor.execute(create_query)
         self.pg_connection.commit()
 
-# 3). Insert table
+    # 3). Insert table
     def insert_armory_items(self, armory_items):
         insertion_query = "INSERT INTO armory_item (item_id, name, value, weight) VALUES %s"
         list_of_tuples = armory_items
